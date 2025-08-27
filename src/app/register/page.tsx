@@ -1,4 +1,4 @@
-import { HeartPulse } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -11,22 +11,26 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
       <div className="w-full max-w-md">
         <Card>
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 p-4">
-              <HeartPulse className="h-10 w-10 text-primary" />
+              <UserPlus className="h-10 w-10 text-primary" />
             </div>
-            <CardTitle className="text-3xl font-bold">MediTrack</CardTitle>
+            <CardTitle className="text-3xl font-bold">Create an Account</CardTitle>
             <CardDescription>
-              Sign in to track your health and medication.
+              Join MediTrack to start managing your health.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form action="/dashboard" className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name</Label>
+                <Input id="name" type="text" placeholder="John Doe" required />
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -41,13 +45,13 @@ export default function LoginPage() {
                 <Input id="password" type="password" required />
               </div>
               <Button type="submit" className="w-full">
-                Login
+                Create Account
               </Button>
             </form>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{' '}
-              <Link href="/register" className="underline">
-                Sign up
+              Already have an account?{' '}
+              <Link href="/" className="underline">
+                Login
               </Link>
             </div>
           </CardContent>
