@@ -30,6 +30,7 @@ import {
   LogOut,
   Settings,
   User,
+  ClipboardList,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -40,7 +41,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   const getTitle = () => {
     if (pathname === '/dashboard') return 'Dashboard';
-    if (pathname.includes('medications')) return 'Medications';
+    if (pathname.includes('medications') && !pathname.includes('logs')) return 'Medications';
+    if (pathname.includes('medication-logs')) return 'Medication Logs';
     if (pathname.includes('ai-summary')) return 'AI Summary';
     return 'MediTrack';
   };
@@ -70,11 +72,22 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname.startsWith('/dashboard/medications')}
+                  isActive={pathname.startsWith('/dashboard/medications') && !pathname.includes('logs')}
                 >
                   <Link href="/dashboard/medications">
                     <Bell />
                     <span>Medications</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname.startsWith('/dashboard/medication-logs')}
+                >
+                  <Link href="/dashboard/medication-logs">
+                    <ClipboardList />
+                    <span>Medication Logs</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
